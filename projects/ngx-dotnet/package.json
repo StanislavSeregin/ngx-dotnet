@@ -1,8 +1,17 @@
 {
   "name": "ngx-dotnet",
   "version": "0.0.2",
+  "author": {
+    "name": "Stanislav Seregin",
+    "url": "https://github.com/StanislavSeregin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:StanislavSeregin/ngx-dotnet.git"
+  },
+  "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^7.1.0",
-    "@angular/core": "^7.1.0"
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0"
   }
 }
