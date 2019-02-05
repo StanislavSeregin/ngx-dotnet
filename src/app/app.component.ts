@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     const dotnetSettings = {
       libSubfolder: 'libs',
       libs: [
-        'sample.dll',
+        'test.dll',
         'mscorlib.dll',
         'WebAssembly.Bindings.dll',
         'netstandard.dll',
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
       ],
       bindings: [
         {
-          namespace: 'sample',
+          namespace: 'test',
           class: 'Math',
           staticMethod: 'IntAdd'
         }
