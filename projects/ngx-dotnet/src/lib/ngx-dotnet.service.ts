@@ -22,23 +22,6 @@ export class NgxDotnetService {
     scriptElement.src = `${dotnetLocation}/mono.js`;
     const el = document.getElementsByTagName('script')[0];
     el.parentNode.insertBefore(scriptElement, el);
-    await this.monoRuntimeIsReadyAsync();
-  }
-
-  private async monoRuntimeIsReadyAsync(): Promise<void> {
-    let isReady = false;
-    const isReadyTaskFactory = () => new Promise<boolean>(resolve => {
-      setTimeout(_ => {
-        if (Dotnet.runtimeIsReady) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      }, 100);
-    });
-
-    while (!isReady) {
-      isReady = await isReadyTaskFactory();
-    }
+    await Dotnet.waitToReadyTask;
   }
 }

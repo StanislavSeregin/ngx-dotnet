@@ -59,6 +59,7 @@ export class AppComponent implements OnInit {
     );
 
     this.disabled = false;
+    this.callDotnetMethod();
   }
 
   public callDotnetMethod() {

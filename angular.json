@@ -25,7 +25,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              { "glob": "**/*", "input": "node_modules/ngx-dotnet/assets", "output": "assets/dotnet" }
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-dotnet/assets",
+                "output": "assets/dotnet"
+              }
             ],
             "styles": [
               "src/styles.scss"
