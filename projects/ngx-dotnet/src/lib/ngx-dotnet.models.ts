@@ -20,9 +20,11 @@ interface IMonoRuntime {
 }
 
 export class DotnetMethodBinding {
-  public namespace: string;
-  public class: string;
-  public staticMethod: string;
+  constructor(
+    public namespace: string,
+    public className: string,
+    public staticMethodName: string
+  ) { }
 }
 
 export class DotnetApp {
@@ -32,9 +34,10 @@ export class DotnetApp {
   }
 }
 
-export class DotnetSettings {
-  public libSubfolder: string;
-  public libs: Array<string>;
+export class DotnetPreferences {
+  public path: string;
+  public bin: string;
+  public libraries: Array<string>;
   public bindings: Array<DotnetMethodBinding>;
 }
 
@@ -46,7 +49,7 @@ export class Dotnet {
   private static runtime: IMonoRuntime;
   private static resolveWaitToReadyTask: Function;
 
-  public static getApplication(dotnetSettings: DotnetSettings): DotnetApp {
+  public static getApplication(dotnetSettings: DotnetPreferences): DotnetApp {
     this.waitToReadyTask = new Promise(resolve => {
       this.resolveWaitToReadyTask = resolve;
     });
@@ -57,18 +60,18 @@ export class Dotnet {
       this.runtime = {
         onRuntimeInitialized: () => {
           MONO.mono_load_runtime_and_bcl(
-            dotnetSettings.libSubfolder,
-            dotnetSettings.libSubfolder,
+            dotnetSettings.bin,
+            dotnetSettings.bin,
             0,
-            dotnetSettings.libs,
+            dotnetSettings.libraries,
             () => {
               const monoBinding = '[WebAssembly.Bindings]WebAssembly.Runtime';
               const _this = Dotnet;
               _this.runtime.mono_bindings_init(monoBinding);
               _this.bindings.forEach((b: DotnetMethodBinding) => {
-                _this.dotnetApp.staticMethods[b.staticMethod] = _this.runtime
+                _this.dotnetApp.staticMethods[b.staticMethodName] = _this.runtime
                   .mono_bind_static_method(
-                    `[${b.namespace}] ${b.class}:${b.staticMethod}`
+                    `[${b.namespace}] ${b.className}:${b.staticMethodName}`
                   );
               });
 

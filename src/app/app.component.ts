@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxDotnetService } from 'ngx-dotnet';
-import { DotnetApp, DotnetSettings } from 'ngx-dotnet';
+import { NgxDotnetService, DotnetPreferences } from 'ngx-dotnet';
+import { DotnetApp, DotnetMethodBinding } from 'ngx-dotnet';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +17,11 @@ export class AppComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    const dotnetLocation = 'assets/dotnet';
-    const dotnetSettings = {
-      libSubfolder: 'libs',
-      libs: [
+    this.output = 'Runtime loading...';
+    const preferences: DotnetPreferences = {
+      path: 'assets/dotnet',
+      bin: 'bin',
+      libraries: [
         'test.dll',
         'mscorlib.dll',
         'WebAssembly.Bindings.dll',
@@ -45,21 +46,16 @@ export class AppComponent implements OnInit {
         // 'WebAssembly.Net.WebSockets.dll'
       ],
       bindings: [
-        {
-          namespace: 'test',
-          class: 'Math',
-          staticMethod: 'IntAdd'
-        }
+        new DotnetMethodBinding('test', 'Math', 'IntAdd')
       ]
-    } as DotnetSettings;
+    };
 
     this.dotnetApp = await this.dotnetService.getApplicationAsync(
-      dotnetLocation,
-      dotnetSettings
+      preferences
     );
 
     this.disabled = false;
-    this.callDotnetMethod();
+    this.output = '';
   }
 
   public callDotnetMethod() {

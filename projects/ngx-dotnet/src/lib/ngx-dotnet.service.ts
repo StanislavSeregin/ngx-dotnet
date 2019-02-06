@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
 import {
   DotnetApp,
-  DotnetSettings,
+  DotnetPreferences,
   Dotnet
 } from './ngx-dotnet.models';
 
 @Injectable()
 export class NgxDotnetService {
   public async getApplicationAsync(
-    dotnetLocation: string,
-    dotnetSettings: DotnetSettings
+    preferences: DotnetPreferences
   ): Promise<DotnetApp> {
-    const dotnetApp = Dotnet.getApplication(dotnetSettings);
-    await this.bootstrapMonoRuntimeAsync(dotnetLocation);
+    const dotnetApp = Dotnet.getApplication(preferences);
+    await this.bootstrapMonoRuntimeAsync(preferences.path);
     return dotnetApp;
   }
 
-  private async bootstrapMonoRuntimeAsync(dotnetLocation: string) {
+  private async bootstrapMonoRuntimeAsync(path: string) {
     const scriptElement = document.createElement('script');
     scriptElement.async = true;
-    scriptElement.src = `${dotnetLocation}/mono.js`;
+    scriptElement.src = `${path}/mono.js`;
     const el = document.getElementsByTagName('script')[0];
     el.parentNode.insertBefore(scriptElement, el);
     await Dotnet.waitToReadyTask;
