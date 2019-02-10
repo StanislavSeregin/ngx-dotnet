@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
         'DotnetDemo.dll'
       ],
       bindings: [
+        new DotnetMethodBinding('DotnetDemo', 'Class1', 'CounterNext'),
         new DotnetMethodBinding('DotnetDemo', 'Class1', 'GetNewGuid')
       ]
     };
@@ -42,7 +43,13 @@ export class AppComponent implements OnInit {
     this.output = '';
   }
 
-  public callDotnetMethod() {
+  public incrementCounter() {
+    this.output = '...';
+    const res = this.dotnetApp.staticMethods.CounterNext();
+    this.output = `${res}`;
+  }
+
+  public getNewGuid() {
     this.output = '...';
     const res = this.dotnetApp.staticMethods.GetNewGuid();
     this.output = `${res}`;

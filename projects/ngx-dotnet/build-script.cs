@@ -1,22 +1,23 @@
 // Transcript from interactive session
-var sdkPath = "~/Dev/mono-wasm";
-var sdk = "~/Dev/sdk";
+var wasmSDK = "~/Dev/mono-wasm";
+var build = "~/Dev/build";
+
 var files = new List<string>();
-files.AddRange(Directory.GetFiles($@"{sdkPath}/framework/", "*.dll"));
-files.AddRange(Directory.GetFiles($@"{sdkPath}/wasm-bcl/wasm/", "*.dll"));
-files.AddRange(Directory.GetFiles($@"{sdkPath}/wasm-bcl/wasm/Facades/", "*.dll"));
-Directory.CreateDirectory(sdk);
-Directory.CreateDirectory($@"{sdk}/bin");
+files.AddRange(Directory.GetFiles($@"{wasmSDK}/framework/", "*.dll"));
+files.AddRange(Directory.GetFiles($@"{wasmSDK}/wasm-bcl/wasm/", "*.dll"));
+files.AddRange(Directory.GetFiles($@"{wasmSDK}/wasm-bcl/wasm/Facades/", "*.dll"));
+Directory.CreateDirectory(build);
+Directory.CreateDirectory($@"{build}/bin");
+File.Copy($@"{wasmSDK}/release/mono.js", $@"{build}/mono.js", true);
+File.Copy($@"{wasmSDK}/release/mono.wasm", $@"{build}/mono.wasm", true);
 foreach (var file in files)
 {
-    File.Copy(file, $@"{sdk}/bin/{Path.GetFileName(file)}", true);
+    File.Copy(file, $@"{build}/bin/{Path.GetFileName(file)}", true);
 }
 
-File.Copy($@"{sdkPath}/release/mono.js", $@"{sdk}/mono.js", true);
-File.Copy($@"{sdkPath}/release/mono.wasm", $@"{sdk}/mono.wasm", true);
-var text = File.ReadAllText($@"{sdk}/mono.js");
+var text = File.ReadAllText($@"{build}/mono.js");
 text = text.Replace("debugger", "");
-File.WriteAllText($@"{sdk}/mono.js", text);
+File.WriteAllText($@"{build}/mono.js", text);
 
 Console.WriteLine(
     string.Join($@"{Environment.NewLine}",
