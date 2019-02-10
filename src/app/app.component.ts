@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxDotnetService, DotnetPreferences } from 'ngx-dotnet';
-import { DotnetApp, DotnetMethodBinding } from 'ngx-dotnet';
+import {
+  NgxDotnetService,
+  DotnetPreferences,
+  DotnetApp,
+  DotnetMethodBinding
+} from 'ngx-dotnet';
 
 @Component({
   selector: 'app-root',
@@ -23,8 +27,8 @@ export class AppComponent implements OnInit {
       bin: 'bin',
       embeddedDependencies: [
         'mscorlib.dll',
+        'netstandard.dll',
         'WebAssembly.Bindings.dll',
-        'netstandard.dll'
       ],
       dependencies: [
         'DotnetDemo.dll'
