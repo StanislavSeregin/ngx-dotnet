@@ -4,6 +4,8 @@
 /dist
 /tmp
 /out-tsc
+**/obj
+**/publish
 
 # dependencies
 /node_modules
@@ -13,7 +15,7 @@ chrome-profiler-events.json
 speed-measure-plugin.json
 
 # IDEs and editors
-/.idea
+**/.idea
 .project
 .classpath
 .c9/
@@ -42,3 +44,6 @@ testem.log
 .DS_Store
 Thumbs.db
 .directory
+
+# Other
+**/DotnetDemo/bin
