@@ -21,32 +21,16 @@ export class AppComponent implements OnInit {
     const preferences: DotnetPreferences = {
       path: 'assets/dotnet',
       bin: 'bin',
-      libraries: [
-        'test.dll',
+      embeddedDependencies: [
         'mscorlib.dll',
         'WebAssembly.Bindings.dll',
-        'netstandard.dll',
-        // 'System.Net.Http.dll',
-        // 'System.dll',
-        // 'Mono.Security.dll',
-        // 'System.Xml.dll',
-        // 'System.Numerics.dll',
-        // 'System.Core.dll',
-        // 'System.Data.dll',
-        // 'System.Transactions.dll',
-        // 'System.Drawing.dll',
-        // 'System.IO.Compression.dll',
-        // 'System.IO.Compression.FileSystem.dll',
-        // 'System.ComponentModel.Composition.dll',
-        // 'System.Runtime.Serialization.dll',
-        // 'System.ServiceModel.Internals.dll',
-        // 'System.Web.Services.dll',
-        // 'System.Xml.Linq.dll',
-        // 'WebAssembly.Net.Http.dll',
-        // 'WebAssembly.Net.WebSockets.dll'
+        'netstandard.dll'
+      ],
+      dependencies: [
+        'DotnetDemo.dll'
       ],
       bindings: [
-        new DotnetMethodBinding('test', 'Math', 'IntAdd')
+        new DotnetMethodBinding('DotnetDemo', 'Class1', 'GetNewGuid')
       ]
     };
 
@@ -60,7 +44,7 @@ export class AppComponent implements OnInit {
 
   public callDotnetMethod() {
     this.output = '...';
-    const res = this.dotnetApp.staticMethods.IntAdd(30, 20);
+    const res = this.dotnetApp.staticMethods.GetNewGuid();
     this.output = `${res}`;
   }
 }

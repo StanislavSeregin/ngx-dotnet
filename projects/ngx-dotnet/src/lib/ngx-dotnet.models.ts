@@ -1,3 +1,5 @@
+import { EmbeddedDependency } from './embedded-dependency';
+
 declare const MONO: IMONO;
 interface IMONO {
   mono_load_runtime_and_bcl(
@@ -37,7 +39,8 @@ export class DotnetApp {
 export class DotnetPreferences {
   public path: string;
   public bin: string;
-  public libraries: Array<string>;
+  public embeddedDependencies: Array<EmbeddedDependency>;
+  public dependencies: Array<string>;
   public bindings: Array<DotnetMethodBinding>;
 }
 
@@ -63,7 +66,7 @@ export class Dotnet {
             dotnetSettings.bin,
             dotnetSettings.bin,
             0,
-            dotnetSettings.libraries,
+            dotnetSettings.dependencies.concat(dotnetSettings.embeddedDependencies),
             () => {
               const monoBinding = '[WebAssembly.Bindings]WebAssembly.Runtime';
               const _this = Dotnet;
@@ -71,7 +74,7 @@ export class Dotnet {
               _this.bindings.forEach((b: DotnetMethodBinding) => {
                 _this.dotnetApp.staticMethods[b.staticMethodName] = _this.runtime
                   .mono_bind_static_method(
-                    `[${b.namespace}] ${b.className}:${b.staticMethodName}`
+                    `[${b.namespace}] ${b.namespace}.${b.className}:${b.staticMethodName}`
                   );
               });
 
