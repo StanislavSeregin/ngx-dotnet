@@ -1,6 +1,6 @@
 # ngx-dotnet
 
-This is an angular wrapper of web assembly mono runtime.
+This is an angular wrapper of WebAssembly Mono Runtime.
 
   - Add this npm package to angular project
   - Configure some settings
@@ -16,7 +16,7 @@ ngx-dotnet requires [Angular](https://angular.io/) v6+ to run.
 {
   "dependencies": {
     ...
-    "ngx-dotnet": "0.1.1"
+    "ngx-dotnet": "0.1.2"
   }
 }
 ```
