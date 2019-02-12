@@ -2,11 +2,11 @@
 
 namespace DotnetDemo
 {
-    public class Class1
+    public class SomeClass
     {
         private static int _counter;
 
-        static Class1()
+        static SomeClass()
         {
             _counter = 0;
         }

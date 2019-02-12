@@ -34,8 +34,8 @@ export class AppComponent implements OnInit {
         'DotnetDemo.dll'
       ],
       bindings: [
-        new DotnetMethodBinding('DotnetDemo', 'Class1', 'CounterNext'),
-        new DotnetMethodBinding('DotnetDemo', 'Class1', 'GetNewGuid')
+        new DotnetMethodBinding('DotnetDemo', 'SomeClass', 'CounterNext'),
+        new DotnetMethodBinding('DotnetDemo', 'SomeClass', 'GetNewGuid')
       ]
     };
 
