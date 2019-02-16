@@ -49,8 +49,9 @@ ngx-dotnet requires [Angular](https://angular.io/) v6+ to run.
 ## Setup
 
 #### Copy built files:
-- Compile netstandard2.0 libraries as release mode
-- Copy *.dll and *.deps.json from 'bin/Release/netstandard2.0' to 'assets/dotnet/bin'.
+- Compile netstandard2.0 project as release mode
+- Copy *.dll and *.deps.json from 'bin/Release/netstandard2.0' to 'assets/dotnet/bin'
+- Copy other dependent third-party assemblies from '.nuget/...' to 'assets/dotnet/bin'
 
 
 #### Import NgxDotnetModule:
