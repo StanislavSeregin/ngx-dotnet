@@ -7,9 +7,11 @@ This is an angular wrapper of WebAssembly Mono Runtime.
   - Put .NET assembly to assets
   - Call native methods of .NET on client-side
 
+
 ## Installation
 
 ngx-dotnet requires [Angular](https://angular.io/) v6+ to run.
+
 
 #### Add ngx-dotnet dependency to package.json:
 ```javascript
@@ -20,6 +22,7 @@ ngx-dotnet requires [Angular](https://angular.io/) v6+ to run.
   }
 }
 ```
+
 
 #### Configure angular.json:
 ```javascript
@@ -42,11 +45,13 @@ ngx-dotnet requires [Angular](https://angular.io/) v6+ to run.
 }
 ```
 
+
 ## Setup
 
-#### Put custom assemblies:
+#### Copy built files:
 - Compile netstandard2.0 libraries as release mode
 - Copy *.dll and *.deps.json from 'bin/Release/netstandard2.0' to 'assets/dotnet/bin'.
+
 
 #### Import NgxDotnetModule:
 ```typescript
@@ -62,6 +67,7 @@ import { NgxDotnetModule } from 'ngx-dotnet';
 })
 ```
 
+
 #### Import types:
 
 ```typescript
@@ -73,6 +79,7 @@ import {
 } from 'ngx-dotnet';
 ```
 
+
 #### Inject NgxDotnetService to constructor:
 
 ```typescript
@@ -80,6 +87,7 @@ constructor(
   private dotnetService: NgxDotnetService
 ) { }
 ```
+
 
 #### Initialize preferences:
 
@@ -97,6 +105,7 @@ const preferences = new DotnetPreferences(
 );
 ```
 
+
 #### Declare interface of methods
 
 ```typescript
@@ -110,6 +119,7 @@ interface IDotnetAppMethods {
 }
 ```
 
+
 #### Get configured and bootstrapped .NET application:
 
 ```typescript
@@ -117,6 +127,7 @@ const dotnetApp = await this.dotnetService.getApplicationAsync<IDotnetAppMethods
   preferences
 );
 ```
+
 
 #### Call native .NET methods:
 
