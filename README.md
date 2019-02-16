@@ -107,7 +107,7 @@ const preferences = new DotnetPreferences(
 ```
 
 
-#### Declare interface of methods
+#### Declare interface of methods:
 
 ```typescript
 interface IDotnetAppMethods {
