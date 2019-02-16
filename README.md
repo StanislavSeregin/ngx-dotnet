@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/ngx-dotnet.svg)](https://badge.fury.io/js/ngx-dotnet)
+
+
 # ngx-dotnet
 
 This is an angular wrapper of WebAssembly Mono Runtime.
