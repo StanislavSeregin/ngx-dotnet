@@ -4319,10 +4319,10 @@ ng-packagr@4.7.0:
     uglify-js "^3.0.7"
     update-notifier "^2.3.0"
 
-ngx-dotnet@0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/ngx-dotnet/-/ngx-dotnet-0.1.2.tgz#c76b819a13616a3318f6ebff3ac09130c760961b"
-  integrity sha512-qBZBRH2JLh6wDX9NX5268SsupHfTrCbwPVLfjbHxVaYbM5qiR+NTVSMDfFM75bbLOUcDK7Y+DnljQDmgjDLWRw==
+ngx-dotnet@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ngx-dotnet/-/ngx-dotnet-0.2.0.tgz#e8bdae17412034791d7d0316a29ed959d3897e4e"
+  integrity sha512-EAjvO1DQkJgGNU6PoqeEJwZ1nO6sHdzRSojPHX/x+rrtvMOfhiYRRIXLslIEriPJEYX7i3xzelnl5zGezFg46g==
   dependencies:
     tslib "^1.9.0"
 

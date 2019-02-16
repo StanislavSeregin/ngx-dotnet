@@ -6,6 +6,11 @@ import {
   DotnetMethodBinding
 } from 'ngx-dotnet';
 
+interface IDotnetAppMethods {
+  CounterNext(): number;
+  GetNewGuid(): string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +19,7 @@ import {
 export class AppComponent implements OnInit {
   public output: string;
   public disabled = true;
-  public dotnetApp: DotnetApp;
+  public dotnetApp: DotnetApp<IDotnetAppMethods>;
 
   constructor(
     private dotnetService: NgxDotnetService
@@ -22,40 +27,34 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     this.output = 'Runtime loading...';
-    const preferences: DotnetPreferences = {
-      path: 'assets/dotnet',
-      bin: 'bin',
-      embeddedDependencies: [
-        'mscorlib.dll',
-        'netstandard.dll',
-        'WebAssembly.Bindings.dll',
-      ],
-      dependencies: [
-        'DotnetDemo.dll'
-      ],
-      bindings: [
-        new DotnetMethodBinding('DotnetDemo', 'SomeClass', 'CounterNext'),
-        new DotnetMethodBinding('DotnetDemo', 'SomeClass', 'GetNewGuid')
-      ]
-    };
-
-    this.dotnetApp = await this.dotnetService.getApplicationAsync(
-      preferences
-    );
-
+    await this.InitDotnetAppAsync();
     this.disabled = false;
     this.output = '';
   }
 
+  private async InitDotnetAppAsync() {
+    const preferences = new DotnetPreferences(
+      'assets/dotnet',
+      'bin',
+      'DotnetDemo.deps',
+      [
+        new DotnetMethodBinding('DotnetDemo', 'SomeClass', 'CounterNext'),
+        new DotnetMethodBinding('DotnetDemo', 'SomeClass', 'GetNewGuid')
+      ]
+    );
+
+    this.dotnetApp = await this.dotnetService.getApplicationAsync<IDotnetAppMethods>(
+      preferences
+    );
+  }
+
   public incrementCounter() {
-    this.output = '...';
-    const res = this.dotnetApp.staticMethods.CounterNext();
-    this.output = `${res}`;
+    const count = this.dotnetApp.methods.CounterNext();
+    this.output = `${count}`;
   }
 
   public getNewGuid() {
-    this.output = '...';
-    const res = this.dotnetApp.staticMethods.GetNewGuid();
-    this.output = `${res}`;
+    const guid = this.dotnetApp.methods.GetNewGuid();
+    this.output = `${guid}`;
   }
 }

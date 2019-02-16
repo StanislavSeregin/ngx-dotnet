@@ -6,7 +6,8 @@
 - Extract the contents of the zip
 - Execute script from './projects/ngx-dotnet/build-script.cs' in C# interactive
 - Copy content from 'build/' to './projects/ngx-dotnet/src/assets/'
-- Actualize './projects/ngx-dotnet/src/lib/embedded-dependency.ts' by script output
+- Actualize './projects/ngx-dotnet/src/lib/bcl-dependency.ts' by script output
+- Actualize './projects/ngx-dotnet/src/lib/bcl-dependencies.ts' by script output
 - Build ngx-dotnet package to './dist' by command: 'yarn build-lib'
 - Increment version of package ('./projects/ngx-dotnet/package.json')
 - Publish package by command: 'npm publish'

@@ -4,7 +4,7 @@ This is an angular wrapper of WebAssembly Mono Runtime.
 
   - Add this npm package to angular project
   - Configure some settings
-  - Include .NET assembly to assets
+  - Put .NET assembly to assets
   - Call native methods of .NET on client-side
 
 ## Installation
@@ -16,7 +16,7 @@ ngx-dotnet requires [Angular](https://angular.io/) v6+ to run.
 {
   "dependencies": {
     ...
-    "ngx-dotnet": "0.1.2"
+    "ngx-dotnet": "0.2.0"
   }
 }
 ```
@@ -46,7 +46,7 @@ ngx-dotnet requires [Angular](https://angular.io/) v6+ to run.
 
 #### Put custom assemblies:
 - Compile netstandard2.0 libraries as release mode
-- Copy assemblies to 'assets/dotnet/bin'.
+- Copy *.dll and *.deps.json from 'bin/Release/netstandard2.0' to 'assets/dotnet/bin'.
 
 #### Import NgxDotnetModule:
 ```typescript
@@ -84,30 +84,36 @@ constructor(
 #### Initialize preferences:
 
 ```typescript
-const preferences: DotnetPreferences = {
-  path: 'assets/dotnet', // Path to mono runtime
-  bin: 'bin', // Directory witn all .NET assemblies
-  // Strong typed .NET system assemblies
-  embeddedDependencies: [
-    'mscorlib.dll',
-    'netstandard.dll',
-    'WebAssembly.Bindings'
-  ],
-  // Your custom .NET assemblies from 'assets/dotnet/bin/'
-  dependencies: [
-    'YourClassLibrary.dll'
-  ],
-  // Registration bindings to public static methods of assemblies
-  bindings: [
-    new DotnetMethodBinding('SomeNamespace', 'SomeClass', 'SomePublicStaticMethod')
+const preferences = new DotnetPreferences(
+  'assets/dotnet', // Path to mono runtime
+  'bin', // Directory witn target .NET assemblies (full path 'assets/dotnet/bin')
+  'DotnetDemo.deps', // Json which contains of the necessary dependencies
+  // Bindings to public static methods
+  [
+    new DotnetMethodBinding('SomeNamespace', 'SomeClass', 'SomePublicStaticMethodName'),
+    new DotnetMethodBinding('SomeNamespace', 'SomeClass', 'OtherPublicStaticMethodNameAsync'),
+    ...
   ]
-};
+);
+```
+
+#### Declare interface of methods
+
+```typescript
+interface IDotnetAppMethods {
+  // Sample synchronous method signature
+  SomePublicStaticMethodName(parameter: number): string;
+
+  // Sample asynchronous method signature
+  OtherPublicStaticMethodNameAsync(parameter: string): Promise<Array<number>>;
+  ...
+}
 ```
 
 #### Get configured and bootstrapped .NET application:
 
 ```typescript
-this.dotnetApp = await this.dotnetService.getApplicationAsync(
+const dotnetApp = await this.dotnetService.getApplicationAsync<IDotnetAppMethods>(
   preferences
 );
 ```
@@ -115,7 +121,8 @@ this.dotnetApp = await this.dotnetService.getApplicationAsync(
 #### Call native .NET methods:
 
 ```typescript
-const res = this.dotnetApp.staticMethods.SomePublicStaticMethod();
+const text = dotnetApp.methods.SomePublicStaticMethodName(123);
+const numbers = await dotnetApp.methods.OtherPublicStaticMethodNameAsync(text);
 ```
 
 License
