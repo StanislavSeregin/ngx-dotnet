@@ -1,5 +1,5 @@
 export type BclDependency =
-  'I18N'
+  | 'I18N'
   | 'I18N.CJK'
   | 'I18N.MidEast'
   | 'I18N.Other'
