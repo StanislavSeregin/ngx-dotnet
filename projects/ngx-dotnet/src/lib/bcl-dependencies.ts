@@ -47,7 +47,6 @@ export const BclDependencies: Array<BclDependency> = [
   'System.Diagnostics.TraceEvent',
   'System.Diagnostics.TraceSource',
   'System.Diagnostics.Tracing',
-  'System.Drawing',
   'System.Drawing.Common',
   'System.Drawing.Primitives',
   'System.Dynamic.Runtime',
@@ -189,3 +188,4 @@ export const BclDependencies: Array<BclDependency> = [
   'WebAssembly.Net.Http',
   'WebAssembly.Net.WebSockets'
 ];
+

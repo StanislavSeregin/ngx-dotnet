@@ -1,5 +1,5 @@
 export type BclDependency =
-  | 'I18N'
+  'I18N'
   | 'I18N.CJK'
   | 'I18N.MidEast'
   | 'I18N.Other'
@@ -45,7 +45,6 @@ export type BclDependency =
   | 'System.Diagnostics.TraceEvent'
   | 'System.Diagnostics.TraceSource'
   | 'System.Diagnostics.Tracing'
-  | 'System.Drawing'
   | 'System.Drawing.Common'
   | 'System.Drawing.Primitives'
   | 'System.Dynamic.Runtime'
@@ -186,3 +185,4 @@ export type BclDependency =
   | 'WebAssembly.Bindings'
   | 'WebAssembly.Net.Http'
   | 'WebAssembly.Net.WebSockets';
+

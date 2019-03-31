@@ -30,7 +30,7 @@
     "rxjs": "6.4.0",
     "tslib": "1.9.3",
     "zone.js": "0.8.29",
-    "ngx-dotnet": "0.2.1"
+    "ngx-dotnet": "0.2.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.13.0",
