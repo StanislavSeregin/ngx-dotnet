@@ -4036,10 +4036,10 @@ ng-packagr@5.3.0:
     terser "^4.0.0"
     update-notifier "^3.0.0"
 
-ngx-dotnet@0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/ngx-dotnet/-/ngx-dotnet-0.2.3.tgz#7cb31f3fe982fa2545ce1f93409393b0e7ffc8ee"
-  integrity sha512-NYKVU4nWkOqVPiFTaqa0PtVgCHQZ2xXJgZPozfp9iuwvxAwoOT3O/aZF1cKqNT/OE1/p/XoV1bmTx5ggJY4Cug==
+ngx-dotnet@0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/ngx-dotnet/-/ngx-dotnet-0.2.4.tgz#cde6c17ad1a55fd74251825da89f45196b002a92"
+  integrity sha512-7rdJ4QE6TG9OAl1r4pNOZr5cU7YWsZtzDPJaJnbA04O5cdqfjUymy0R7mGm1HdjMPrfce7f0DYKL80m8ZHvHHA==
   dependencies:
     tslib "^1.9.0"
 

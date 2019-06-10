@@ -21,7 +21,7 @@ ngx-dotnet requires [Angular](https://angular.io/) v6+ to run.
 {
   "dependencies": {
     ...
-    "ngx-dotnet": "0.2.3"
+    "ngx-dotnet": "0.2.4"
   }
 }
 ```

@@ -1,5 +1,5 @@
 {
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": {
     "name": "Stanislav Seregin",
     "url": "https://github.com/StanislavSeregin"
@@ -30,7 +30,7 @@
     "rxjs": "6.5.2",
     "tslib": "1.9.3",
     "zone.js": "0.9.1",
-    "ngx-dotnet": "0.2.3"
+    "ngx-dotnet": "0.2.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.800.2",
