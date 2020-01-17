@@ -13,12 +13,13 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-lib": "ng build ngx-dotnet && cp -r ./projects/ngx-dotnet/src/assets ./dist/ngx-dotnet/assets && cp ./README.md ./dist/ngx-dotnet",
+    "build-lib": "ng build ngx-dotnet && ncp ./projects/ngx-dotnet/src/assets ./dist/ngx-dotnet/assets && ncp ./README.md ./dist/ngx-dotnet",
     "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
     "ngx-dotnet": "file:./dist/ngx-dotnet",
+    "ncp": "2.0.0",
     "@angular/animations": "8.2.14",
     "@angular/common": "8.2.14",
     "@angular/compiler": "8.2.14",
