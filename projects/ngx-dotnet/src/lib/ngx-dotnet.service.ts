@@ -77,7 +77,7 @@ export class NgxDotnetService {
   private async bootstrapMonoRuntimeAsync(path: string) {
     const scriptElement = document.createElement('script');
     scriptElement.async = true;
-    scriptElement.src = `${path}/mono.js`;
+    scriptElement.src = `${path}/dotnet.js`;
     const el = document.getElementsByTagName('script')[0];
     el.parentNode.insertBefore(scriptElement, el);
     await Dotnet.waitToReadyTask;
